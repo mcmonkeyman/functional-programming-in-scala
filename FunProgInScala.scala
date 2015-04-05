@@ -53,6 +53,11 @@ object FunProgInScala {
     run(isSorted(List(3,2,1).toArray, (x:Int, y:Int) => x>=y))
   }
 
+  def `exercise2.3` = {
+    def curry[A, B, C] (f: (A, B) => C): A => (B => C) = ???
+    run(curry())
+  }
+
   def run[R](block: => R): R = {
     val result = time(block)
     println(result)
