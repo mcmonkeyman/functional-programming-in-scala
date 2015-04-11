@@ -8,6 +8,9 @@ object FunProgInScala {
   def runExercises = {
     `exercise2.1`
     `exercise2.2`
+    `exercise2.3`
+    `exercise2.4`
+    `exercise2.5`
   }
 
   def `exercise2.1` = {
@@ -54,8 +57,21 @@ object FunProgInScala {
   }
 
   def `exercise2.3` = {
-    def curry[A, B, C] (f: (A, B) => C): A => (B => C) = ???
-    run(curry())
+    def curry[A, B, C] (f: (A, B) => C): A => (B => C) = (a:A) => f(a,_)
+    run(curry( (a:String, b:String) => a+b ) )
+  }
+
+
+  def `exercise2.4` = {
+    def uncurry[a, b, c] (f: a  => (b => c)): (a, b) => c = (a:a, b:b) => f(a)(b)
+    run(uncurry( (a:String) => { (b:String) => a+b} ) )
+  }
+  
+  def `exercise2.5` = {
+    def compose[A, B, C] (f: B => C, g: A => B): A => C = (a:A) => f(g(a))
+    var functOne = { (a:String) => a+"a" }
+    var functTwo = { (b:String) => b+"b" }
+    compose( functOne, functTwo )
   }
 
   def run[R](block: => R): R = {
