@@ -3,7 +3,7 @@ import scala.io.Source
 object FunProgInScala {
 
   def main(args: Array[String]) = {
-  }
+
 
   def runExercises = {
     `exercise2.1`
@@ -61,17 +61,16 @@ object FunProgInScala {
     run(curry( (a:String, b:String) => a+b ) )
   }
 
-
   def `exercise2.4` = {
     def uncurry[a, b, c] (f: a  => (b => c)): (a, b) => c = (a:a, b:b) => f(a)(b)
     run(uncurry( (a:String) => { (b:String) => a+b} ) )
   }
-  
+
   def `exercise2.5` = {
     def compose[A, B, C] (f: B => C, g: A => B): A => C = (a:A) => f(g(a))
     var functOne = { (a:String) => a+"a" }
     var functTwo = { (b:String) => b+"b" }
-    compose( functOne, functTwo )
+    run( compose( functOne, functTwo ) )
   }
 
   def run[R](block: => R): R = {
