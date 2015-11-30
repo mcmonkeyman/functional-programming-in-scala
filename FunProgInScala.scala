@@ -4,13 +4,13 @@ object FunProgInScala {
 
   def main(args: Array[String]) = {
 
-
     def runExercises = {
       `exercise2.1`
       `exercise2.2`
       `exercise2.3`
       `exercise2.4`
       `exercise2.5`
+      `exercise3.1`
     }
     runExercises
 
@@ -74,6 +74,22 @@ object FunProgInScala {
       run( compose( functOne, functTwo ) )
     }
 
+    def `exercise3.1` = {
+      val x = List(1, 2, 3, 4, 5) match {
+        case x :: 2 :: 4 :: tail => x
+        case Nil => 42
+        case x :: y :: 3 :: 4 :: tail => x + y
+        case h :: tail => h + tail.sum
+        case _ => 101
+      }
+      x
+    }
+
+    def `exercise3.2` = {
+      val l = List(1, 3, 4, 5) 
+      def tail
+    }
+
     def run[R](block: => R): R = {
       val result = time(block)
       println(result)
@@ -88,5 +104,4 @@ object FunProgInScala {
       result
     }
   }
-
 }
